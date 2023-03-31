@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+
+    <!-- CDN LINK -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js">
+    </script>
+
+    <!-- font icon link -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+
+    <!-- CSS style -->
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+        #app-vue {
+            display: flex;
+            justify-content: center;
+            font-family: "Rubik", sans-serif;
+        }
+
+        body {
+            background: #313131;
+            font-size: 18px;
+        }
+
+        .fa-plus {
+            background-color: #fca954;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 30px;
+        }
+
+        .lists {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: #444444;
+        }
+
+        .container {
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 10px 0px;
+            background: #444444;
+            color: #aaaaaa;
+        }
+
+        .container input {
+            width: 80%;
+            padding: 8px 0px;
+            outline: none;
+            background: transparent;
+            border: none;
+            color: #aaaaaa;
+            font-size: 17px;
+        }
+
+        ::placeholder {
+            color: #aaaaaa;
+        }
+
+        .container-text {
+            width: 300px;
+            padding: 20px;
+            margin: 20px 0px;
+            background: #444444;
+            color: #aaaaaa;
+        }
+
+        .text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        li {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #aaaaaa;
+        }
+
+        @media (max-width: 332px) {
+
+            .lists,
+            .container-text,
+            .container {
+                width: 270px;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app-vue">
+        <main>
+            <div class="container-text">
+                <div class="text">
+                    <h1>Shopping List</h1>
+                    <span>
+                        <i class="fa fa-plus" aria-hidden="true">
+                        </i>
+                    </span>
+                </div>
+            </div>
+            <div class="lists">
+                <ul>
+                    <li v-for="(list, index) in lists" :key="index">
+                        {{ list }}
+                        <i class="fa fa-trash" aria-hidden="true" v-on:click="removeList(index)">
+                        </i>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
+                <input type="text" placeholder="Create list" v-model="currentList" v-on:keyup.enter="addList" />
+            </div>
+        </main>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app-vue",
+            data() {
+                return {
+                    lists: [
+                        "Mackbook Pro",
+                        "Google pixel 4a",
+                        "Microsoft surface laptop 2",
+                    ],
+                    currentLists: "",
+                };
+            },
+            methods: {
+                addList: function () {
+                    this.lists.push(this.currentList);
+                    this.currentList = "";
+                },
+                removeList: function (index) {
+                    this.lists.splice(index, 1);
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
